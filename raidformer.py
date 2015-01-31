@@ -46,7 +46,7 @@ def get_options():
         dest="raidlevel", help="RAID level")
     parser.add_option("-s", "--size", action="store", type="int",
         dest="size", help="Size of EBS volumes ")
-    parser.add_option("-voltype", "--mountpoint", action="store", type="string",
+    parser.add_option("", "--voltype", action="store", type="string",
         dest="voltype", help="Type of EBS volumes standard io1 gp2")
     parser.add_option("-t", "--test",  action="store_true",
         dest="test", default=False, help="Does a dry run of the mdadm lvm commands.")
