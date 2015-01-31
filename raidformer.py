@@ -162,7 +162,7 @@ if (options.attach or options.snapshot) and not options.test:
         if my_snapshots:
             snapshot = my_snapshots[key]
             print "Restoring snapshot %s to device %s" % (device, snapshot)
-            vol = ec2conn.create_volume(options.size, instance_data['placement']['availability-zone'], snapshot=snapshot, options.voltype)
+            vol = ec2conn.create_volume(options.size, instance_data['placement']['availability-zone'], snapshot=snapshot)
         else:
             print "Creating new volume on device %s" % device
             vol = ec2conn.create_volume(options.size, instance_data['placement']['availability-zone'], snapshot=None, options.voltype)
