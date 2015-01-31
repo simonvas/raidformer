@@ -139,8 +139,8 @@ if options.raidlevel in even_number_raidlevels and options.count % 2 != 0:
 
 my_devices = []
 
-for n in range(1, options.count + 1):
-    my_devices.append(options.device + str(n) )
+for n in range(0, options.count + 1):
+    my_devices.append(devices[n])
 
 instance_data = boto.utils.get_instance_metadata()
 
