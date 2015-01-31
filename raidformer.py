@@ -165,7 +165,7 @@ if (options.attach or options.snapshot) and not options.test:
             vol = ec2conn.create_volume(options.size, instance_data['placement']['availability-zone'], snapshot=snapshot, options.voltype)
         else:
             print "Creating new volume on device %s" % device
-            vol = ec2conn.create_volume(options.size, instance_data['placement']['availability-zone'],,options.voltype)
+            vol = ec2conn.create_volume(options.size, instance_data['placement']['availability-zone'], snapshot=None, options.voltype)
         print "Created volume: ", vol.id
 
         print "Waiting for %s to change to state available" % vol.id
