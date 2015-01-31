@@ -46,6 +46,8 @@ def get_options():
         dest="raidlevel", help="RAID level")
     parser.add_option("-s", "--size", action="store", type="int",
         dest="size", help="Size of EBS volumes ")
+    parser.add_option("-voltype", "--mountpoint", action="store", type="string",
+        dest="voltype", help="Type of EBS volumes standard io1 gp2")
     parser.add_option("-t", "--test",  action="store_true",
         dest="test", default=False, help="Does a dry run of the mdadm lvm commands.")
     parser.add_option("", "--tag", action="store", type="string",
@@ -160,10 +162,10 @@ if (options.attach or options.snapshot) and not options.test:
         if my_snapshots:
             snapshot = my_snapshots[key]
             print "Restoring snapshot %s to device %s" % (device, snapshot)
-            vol = ec2conn.create_volume(options.size, instance_data['placement']['availability-zone'], snapshot=snapshot)
+            vol = ec2conn.create_volume(options.size, options.voltype, instance_data['placement']['availability-zone'], snapshot=snapshot)
         else:
             print "Creating new volume on device %s" % device
-            vol = ec2conn.create_volume(options.size, instance_data['placement']['availability-zone'])
+            vol = ec2conn.create_volume(options.size, options.voltype, instance_data['placement']['availability-zone'])
         print "Created volume: ", vol.id
 
         print "Waiting for %s to change to state available" % vol.id
